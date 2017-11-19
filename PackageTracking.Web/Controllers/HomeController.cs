@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PackageTracking.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,18 @@ namespace PackageTracking.Web.Controllers
             ViewBag.Title = "Home Page";
 
             return View();
+        }
+
+        [HttpGet]
+        public ViewResult Logon()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ViewResult Logon(LogonViewModel model)
+        {
+            return View(model);
         }
     }
 }

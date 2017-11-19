@@ -1,6 +1,11 @@
-﻿using System;
+﻿using SimpleInjector;
+using SimpleInjector.Integration.Web;
+using SimpleInjector.Integration.Web.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -18,6 +23,26 @@ namespace PackageTracking.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ConfigureContainer();
+        }
+
+        private void ConfigureContainer()
+        {
+            // Create the container as usual.
+            var container = new Container();
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+
+            container.Register<DbContext, Data.PackageTrackingContext>(Lifestyle.Scoped);
+
+            // Register your types, for instance:
+            //container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
+
+            // This is an extension method from the integration package.
+            container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+            container.Verify();
+
+            DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
     }
 }
