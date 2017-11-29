@@ -1,6 +1,7 @@
 ﻿using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
+using SimpleInjector.Integration.WebApi;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -43,6 +44,7 @@ namespace PackageTracking.Web
             container.Verify();
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
+            GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
         }
     }
 }

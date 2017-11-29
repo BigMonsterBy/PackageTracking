@@ -9,6 +9,7 @@ namespace PackageTracking.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
@@ -23,9 +24,19 @@ namespace PackageTracking.Web.Controllers
         }
 
         [HttpPost]
-        public ViewResult Logon(LogonViewModel model)
+        public ActionResult Logon(LogonViewModel model)
         {
-            return View(model);
+            var apiUserController = DependencyResolver.Current.GetService<Api.UserController>();
+
+            if (apiUserController.Login(model.Name, model.Password).StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("*", "Somethig went wrong");
+                return View(model);
+            }
         }
     }
 }
