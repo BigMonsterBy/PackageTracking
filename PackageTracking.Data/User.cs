@@ -6,10 +6,8 @@ namespace PackageTracking.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("User")]
-    public partial class User
+    public class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
             UserRole = new HashSet<UserRole>();
@@ -27,7 +25,8 @@ namespace PackageTracking.Data
         [StringLength(50)]
         public string Password { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public bool IsGlobalAdmin { get; set; }
+
         public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }

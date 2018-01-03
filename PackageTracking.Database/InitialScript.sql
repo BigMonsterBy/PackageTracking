@@ -58,6 +58,7 @@ CREATE TABLE [dbo].[User](
 	[UserId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](250) NOT NULL,
 	[Password] [nvarchar](50) NOT NULL,
+	[IsGlobalAdmin] [bit] NOT NULL DEFAULT(0)
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC

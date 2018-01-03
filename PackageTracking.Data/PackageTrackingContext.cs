@@ -20,12 +20,16 @@ namespace PackageTracking.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Client>()
+                .ToTable("Client");
+
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.UserRole)
                 .WithRequired(e => e.Role)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
+                .ToTable("User")
                 .HasMany(e => e.UserRole)
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
