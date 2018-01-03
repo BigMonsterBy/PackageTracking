@@ -22,7 +22,7 @@ namespace PackageTracking.Data
         public string Name { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Password { get; set; }
 
         public bool IsGlobalAdmin { get; set; }

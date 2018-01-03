@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Threading;
 using System.Web;
@@ -31,6 +32,7 @@ namespace PackageTracking.Web.Infrastructure.Services
 
         public User GetUser(string userName, string userPassword)
         {
+            userPassword = Chipher.GetMd5Hash(MD5.Create(), userPassword);
             return packageTrackingContext.User.Single(u => u.Name == userName && u.Password == userPassword);
         }
 

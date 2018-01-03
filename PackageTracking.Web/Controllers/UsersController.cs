@@ -4,9 +4,11 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using PackageTracking.Data;
+using PackageTracking.Web.Infrastructure;
 
 namespace PackageTracking.Web.Controllers
 {
@@ -50,6 +52,7 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Password = Chipher.GetMd5Hash(MD5.Create(), user.Password);
                 db.User.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +85,7 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Password = Chipher.GetMd5Hash(MD5.Create(), user.Password);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
