@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using PackageTracking.Web.Infrastructure;
+using System.Web;
 using System.Web.Mvc;
 
 namespace PackageTracking.Web
@@ -8,6 +9,7 @@ namespace PackageTracking.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new AuthorizationFilter());
         }
     }
 }

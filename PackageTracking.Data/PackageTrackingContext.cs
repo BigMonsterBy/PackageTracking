@@ -5,7 +5,7 @@ namespace PackageTracking.Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class PackageTrackingContext : DbContext
+    public class PackageTrackingContext : DbContext
     {
         public PackageTrackingContext()
             : base("name=PackageTrackingContext")

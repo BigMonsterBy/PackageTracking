@@ -12,6 +12,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using PackageTracking.Web.Infrastructure.Services;
+using PackageTracking.Data;
 
 namespace PackageTracking.Web
 {
@@ -19,13 +21,14 @@ namespace PackageTracking.Web
     {
         protected void Application_Start()
         {
+            ConfigureContainer();
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ConfigureContainer();
         }
 
         private void ConfigureContainer()
@@ -34,8 +37,8 @@ namespace PackageTracking.Web
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
-            container.Register<DbContext, Data.PackageTrackingContext>(Lifestyle.Scoped);
-
+            container.Register<PackageTrackingContext, PackageTrackingContext>(Lifestyle.Scoped);
+            container.Register<IUserService, UserService>();
             // Register your types, for instance:
             //container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
 
