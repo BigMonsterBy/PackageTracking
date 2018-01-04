@@ -38,7 +38,7 @@ namespace PackageTracking.Web
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
             container.Register<PackageTrackingContext, PackageTrackingContext>(Lifestyle.Scoped);
-            container.Register<IUserService, UserService>();
+            container.Register<IUserService, UserService>(Lifestyle.Scoped);
             // Register your types, for instance:
             //container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
 

@@ -10,14 +10,16 @@ using PackageTracking.Data;
 
 namespace PackageTracking.Web.Controllers
 {
-    public class WarehousesController : Controller
+    public class WarehousesController : WebController
     {
-        private PackageTrackingContext db = new PackageTrackingContext();
+        public WarehousesController(PackageTrackingContext packageTrackingContext) : base(packageTrackingContext)
+        {
+        }
 
         // GET: Warehouses
         public ActionResult Index()
         {
-            var warehouse = db.Warehouse.Include(w => w.Client);
+            var warehouse = _packageTrackingContext.Warehouse.Include(w => w.Client);
             return View(warehouse.ToList());
         }
 
@@ -28,7 +30,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Warehouse warehouse = db.Warehouse.Find(id);
+            Warehouse warehouse = _packageTrackingContext.Warehouse.Find(id);
             if (warehouse == null)
             {
                 return HttpNotFound();
@@ -39,7 +41,7 @@ namespace PackageTracking.Web.Controllers
         // GET: Warehouses/Create
         public ActionResult Create()
         {
-            ViewBag.ClientId = new SelectList(db.Client, "ClientId", "Name");
+            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name");
             return View();
         }
 
@@ -52,12 +54,12 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Warehouse.Add(warehouse);
-                db.SaveChanges();
+                _packageTrackingContext.Warehouse.Add(warehouse);
+                _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClientId = new SelectList(db.Client, "ClientId", "Name", warehouse.ClientId);
+            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
 
@@ -68,12 +70,12 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Warehouse warehouse = db.Warehouse.Find(id);
+            Warehouse warehouse = _packageTrackingContext.Warehouse.Find(id);
             if (warehouse == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ClientId = new SelectList(db.Client, "ClientId", "Name", warehouse.ClientId);
+            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
 
@@ -86,11 +88,11 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(warehouse).State = EntityState.Modified;
-                db.SaveChanges();
+                _packageTrackingContext.Entry(warehouse).State = EntityState.Modified;
+                _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ClientId = new SelectList(db.Client, "ClientId", "Name", warehouse.ClientId);
+            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
 
@@ -101,7 +103,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Warehouse warehouse = db.Warehouse.Find(id);
+            Warehouse warehouse = _packageTrackingContext.Warehouse.Find(id);
             if (warehouse == null)
             {
                 return HttpNotFound();
@@ -114,19 +116,10 @@ namespace PackageTracking.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Warehouse warehouse = db.Warehouse.Find(id);
-            db.Warehouse.Remove(warehouse);
-            db.SaveChanges();
+            Warehouse warehouse = _packageTrackingContext.Warehouse.Find(id);
+            _packageTrackingContext.Warehouse.Remove(warehouse);
+            _packageTrackingContext.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

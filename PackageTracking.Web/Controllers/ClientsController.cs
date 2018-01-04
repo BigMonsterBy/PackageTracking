@@ -10,14 +10,16 @@ using PackageTracking.Data;
 
 namespace PackageTracking.Web.Controllers
 {
-    public class ClientsController : Controller
+    public class ClientsController : WebController
     {
-        private PackageTrackingContext db = new PackageTrackingContext();
+        public ClientsController(PackageTrackingContext packageTrackingContext) : base(packageTrackingContext)
+        {
+        }
 
         // GET: Clients
         public ActionResult Index()
         {
-            return View(db.Client.ToList());
+            return View(_packageTrackingContext.Client.ToList());
         }
 
         // GET: Clients/Details/5
@@ -27,7 +29,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Client.Find(id);
+            Client client = _packageTrackingContext.Client.Find(id);
             if (client == null)
             {
                 return HttpNotFound();
@@ -50,8 +52,8 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Client.Add(client);
-                db.SaveChanges();
+                _packageTrackingContext.Client.Add(client);
+                _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +67,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Client.Find(id);
+            Client client = _packageTrackingContext.Client.Find(id);
             if (client == null)
             {
                 return HttpNotFound();
@@ -82,8 +84,8 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(client).State = EntityState.Modified;
-                db.SaveChanges();
+                _packageTrackingContext.Entry(client).State = EntityState.Modified;
+                _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(client);
@@ -96,7 +98,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client client = db.Client.Find(id);
+            Client client = _packageTrackingContext.Client.Find(id);
             if (client == null)
             {
                 return HttpNotFound();
@@ -109,19 +111,10 @@ namespace PackageTracking.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Client client = db.Client.Find(id);
-            db.Client.Remove(client);
-            db.SaveChanges();
+            Client client = _packageTrackingContext.Client.Find(id);
+            _packageTrackingContext.Client.Remove(client);
+            _packageTrackingContext.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

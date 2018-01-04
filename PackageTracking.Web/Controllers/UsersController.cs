@@ -12,14 +12,16 @@ using PackageTracking.Web.Infrastructure;
 
 namespace PackageTracking.Web.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : WebController
     {
-        private PackageTrackingContext db = new PackageTrackingContext();
+        public UsersController(PackageTrackingContext packageTrackingContext) : base(packageTrackingContext)
+        {
+        }
 
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.User.ToList());
+            return View(_packageTrackingContext.User.ToList());
         }
 
         // GET: Users/Details/5
@@ -29,7 +31,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
+            User user = _packageTrackingContext.User.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -52,9 +54,9 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.Password = Chipher.GetMd5Hash(MD5.Create(), user.Password);
-                db.User.Add(user);
-                db.SaveChanges();
+                user.Password = Chipher.GetMd5Hash(user.Password);
+                _packageTrackingContext.User.Add(user);
+                _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +70,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
+            User user = _packageTrackingContext.User.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -85,9 +87,9 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.Password = Chipher.GetMd5Hash(MD5.Create(), user.Password);
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                user.Password = Chipher.GetMd5Hash(user.Password);
+                _packageTrackingContext.Entry(user).State = EntityState.Modified;
+                _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -100,7 +102,7 @@ namespace PackageTracking.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.User.Find(id);
+            User user = _packageTrackingContext.User.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -113,19 +115,10 @@ namespace PackageTracking.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.User.Find(id);
-            db.User.Remove(user);
-            db.SaveChanges();
+            User user = _packageTrackingContext.User.Find(id);
+            _packageTrackingContext.User.Remove(user);
+            _packageTrackingContext.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

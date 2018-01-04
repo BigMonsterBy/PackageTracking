@@ -32,7 +32,7 @@ namespace PackageTracking.Web.Infrastructure.Services
 
         public User GetUser(string userName, string userPassword)
         {
-            userPassword = Chipher.GetMd5Hash(MD5.Create(), userPassword);
+            userPassword = Chipher.GetMd5Hash(userPassword);
             return packageTrackingContext.User.Single(u => u.Name == userName && u.Password == userPassword);
         }
 

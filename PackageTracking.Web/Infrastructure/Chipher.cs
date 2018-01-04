@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
 namespace PackageTracking.Web.Infrastructure
 {
     public class Chipher
     {
+        public static string GetMd5Hash(string input)
+        {
+            using (var md5Hash = MD5.Create())
+            {
+                return GetMd5Hash(md5Hash, input);
+            }
+        }
+
         public static string GetMd5Hash(MD5 md5Hash, string input)
         {
-
             // Convert the input string to a byte array and compute the hash.
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
 
