@@ -62,6 +62,21 @@ namespace PackageTracking.Web.Controllers
             ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
+        /*[HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "WarehouseId,ClientId,Name")] Warehouse warehouse)
+        {
+            if (ModelState.IsValid)
+            {
+                DbSet dbSet = _packageTrackingContext.Warehouse;
+                dbSet.Add(warehouse);
+                _packageTrackingContext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
+            return View(warehouse);
+        }*/
 
         // GET: Warehouses/Edit/5
         public ActionResult Edit(int? id)
