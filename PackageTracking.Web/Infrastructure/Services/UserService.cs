@@ -1,4 +1,5 @@
-﻿using PackageTracking.Data;
+﻿using PackageTracking.Core;
+using PackageTracking.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace PackageTracking.Web.Infrastructure.Services
             if (HttpContext.Current != null)
             {
                 HttpContext.Current.User = webPrincipal;
+                HttpContext.Current.Items[Constantes.UserContext] = new UserContext { UserId = user.UserId };
             }
             HttpContext.Current.Response.Cookies.Add(new HttpCookie(Constantes.UserCookieName, user.UserId.ToString()));
         }

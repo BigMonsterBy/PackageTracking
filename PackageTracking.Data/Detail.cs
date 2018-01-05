@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace PackageTracking.Data.DAL
+namespace PackageTracking.Data
 {
     [Serializable]
-    public partial class Details
+    public class Detail
     {
-        //MARK THE PRIMARY KEY!!!
+        [Key]
         public int DetailID { get; set; }
         public short IncomeID { get; set; }
         public string Customer { get; set; }
@@ -45,5 +42,11 @@ namespace PackageTracking.Data.DAL
         public DateTime? AcceptDate { get; set; }
 
         public virtual Income Income { get; set; }
+        public virtual Pack Pack { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public int ModifiedBy { get; set; }
     }
 }

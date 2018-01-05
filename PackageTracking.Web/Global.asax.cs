@@ -14,6 +14,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using PackageTracking.Web.Infrastructure.Services;
 using PackageTracking.Data;
+using PackageTracking.Web.Infrastructure;
+using PackageTracking.Core.Interfaces;
 
 namespace PackageTracking.Web
 {
@@ -37,6 +39,7 @@ namespace PackageTracking.Web
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
+            container.Register<IUserContextProvider, UserContextProvider>(Lifestyle.Scoped);
             container.Register<PackageTrackingContext, PackageTrackingContext>(Lifestyle.Scoped);
             container.Register<IUserService, UserService>(Lifestyle.Scoped);
             // Register your types, for instance:

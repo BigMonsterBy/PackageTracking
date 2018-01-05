@@ -1,9 +1,4 @@
-﻿using PackageTracking.Data.DAL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace PackageTracking.Data.DTO
 {
@@ -12,7 +7,7 @@ namespace PackageTracking.Data.DTO
     {
         #region constructor
         //MARK THE PRIMARY KEY!!!
-        public DetailDTO(Details detail)
+        public DetailDTO(Detail detail)
         {
             DetailID = detail.DetailID;
             IncomeID = detail.IncomeID;

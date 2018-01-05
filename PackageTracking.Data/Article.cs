@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PackageTracking.Data.DAL
+namespace PackageTracking.Data
 {
     [Serializable]
     public partial class Article

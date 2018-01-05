@@ -1,5 +1,4 @@
-﻿using PackageTracking.Data.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace PackageTracking.Data.DTO

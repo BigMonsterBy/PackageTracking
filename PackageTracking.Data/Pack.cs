@@ -1,15 +1,20 @@
-﻿using System;
+﻿using PackageTracking.Data.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace PackageTracking.Data.DAL
+namespace PackageTracking.Data
 {
     [Serializable]
-    public partial class Pack
+    public class Pack : IAuditable
     {
-        //MARK THE PRIMARY KEY!!!
+        public Pack()
+        {
+            Details = new List<Detail>();
+        }
+
+        //todo check if it is real key?
+        [Key]
         public int Serial { get; set; }
         public int GTIN { get; set; }
         public int TaskID { get; set; }
@@ -41,7 +46,14 @@ namespace PackageTracking.Data.DAL
         public string AcceptedBy { get; set; }
         public DateTime? AcceptedTime { get; set; }
 
-        public virtual Article Article { get; set; }
-        public virtual Orders Orders { get; set; }
+        //public virtual Article Article { get; set; }
+        public virtual Order Order { get; set; }
+
+        public virtual ICollection<Detail> Details { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public int ModifiedBy { get; set; }
     }
 }

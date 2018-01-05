@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageTracking.Web", "PackageTracking.Web\PackageTracking.Web.csproj", "{8431F222-7CB4-41CA-B6BE-F3EA2E3A5D32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageTracking.Data", "PackageTracking.Data\PackageTracking.Data.csproj", "{B549F040-E982-4CC0-815C-88AF3B237F3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageTracking.App", "PackageTracking.App\PackageTracking.App.csproj", "{814C7C55-0783-4F2E-96E0-E6C9C0AE8D38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PackageTracking.Core", "PackageTracking.Core\PackageTracking.Core\PackageTracking.Core.csproj", "{05C00EAD-D914-4CFE-B4F8-E18AD0D517A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{814C7C55-0783-4F2E-96E0-E6C9C0AE8D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{814C7C55-0783-4F2E-96E0-E6C9C0AE8D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{814C7C55-0783-4F2E-96E0-E6C9C0AE8D38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05C00EAD-D914-4CFE-B4F8-E18AD0D517A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05C00EAD-D914-4CFE-B4F8-E18AD0D517A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05C00EAD-D914-4CFE-B4F8-E18AD0D517A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05C00EAD-D914-4CFE-B4F8-E18AD0D517A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PackageTracking.Data.DAL
+namespace PackageTracking.Data
 {
     [Serializable]
     public partial class Income
@@ -12,7 +12,7 @@ namespace PackageTracking.Data.DAL
         //MARK THE PRIMARY KEY!!!
         public Income()
         {
-            Details = new List<Details>();
+            Details = new List<Detail>();
         }
 
         public short IncomeID { get; set; }
@@ -22,6 +22,6 @@ namespace PackageTracking.Data.DAL
         public DateTime? LastEditDate { get; set; }
         public DateTime? CreationDate { get; set; }
 
-        public virtual ICollection<Details> Details { get; set; }
+        public virtual ICollection<Detail> Details { get; set; }
     }
 }

@@ -1,10 +1,12 @@
+using PackageTracking.Data.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace PackageTracking.Data
 {
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
-    public partial class Client
+    public partial class Client : IAuditable
     {
         public Client()
         {
@@ -20,5 +22,13 @@ namespace PackageTracking.Data
         public string Name { get; set; }
 
         public virtual ICollection<Warehouse> Warehouse { get; set; }
+
+        public bool Enabled { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public int ModifiedBy { get; set; }
+
     }
 }

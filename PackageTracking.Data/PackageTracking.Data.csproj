@@ -50,18 +50,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
-    <Compile Include="DAL\Article.cs" />
-    <Compile Include="DAL\Details.cs" />
-    <Compile Include="DAL\Income.cs" />
-    <Compile Include="DAL\Orders.cs" />
-    <Compile Include="DAL\Pack.cs" />
-    <Compile Include="DAL\Ship.cs" />
+    <Compile Include="Article.cs" />
+    <Compile Include="Detail.cs" />
+    <Compile Include="Income.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Pack.cs" />
+    <Compile Include="Ship.cs" />
     <Compile Include="DTO\ArticleDTO.cs" />
     <Compile Include="DTO\DetailDTO.cs" />
     <Compile Include="DTO\IncomeDTO.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\PackDTO.cs" />
     <Compile Include="DTO\ShipDTO.cs" />
+    <Compile Include="Interfaces\IAuditable.cs" />
     <Compile Include="Other\Detail.cs" />
     <Compile Include="Other\ShippedPack.cs" />
     <Compile Include="Other\ShipsForJSON.cs" />
@@ -75,6 +76,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PackageTracking.Core\PackageTracking.Core\PackageTracking.Core.csproj">
+      <Project>{05c00ead-d914-4cfe-b4f8-e18ad0d517a0}</Project>
+      <Name>PackageTracking.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

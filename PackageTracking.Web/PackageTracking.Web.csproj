@@ -179,6 +179,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ApiAuthFilter.cs" />
+    <Compile Include="Infrastructure\UserContextProvider.cs" />
     <Compile Include="Infrastructure\WebAuthFilter.cs" />
     <Compile Include="Infrastructure\Chipher.cs" />
     <Compile Include="Infrastructure\Constantes.cs" />
@@ -259,6 +260,10 @@
     <Content Include="Scripts\jquery-3.2.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PackageTracking.Core\PackageTracking.Core\PackageTracking.Core.csproj">
+      <Project>{05c00ead-d914-4cfe-b4f8-e18ad0d517a0}</Project>
+      <Name>PackageTracking.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PackageTracking.Data\PackageTracking.Data.csproj">
       <Project>{b549f040-e982-4cc0-815c-88af3b237f3b}</Project>
       <Name>PackageTracking.Data</Name>

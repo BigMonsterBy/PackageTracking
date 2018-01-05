@@ -1,12 +1,13 @@
+using PackageTracking.Data.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
+
 namespace PackageTracking.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
-
-    public class User
+    public class User : IAuditable
     {
         public User()
         {
@@ -28,5 +29,12 @@ namespace PackageTracking.Data
         public bool IsGlobalAdmin { get; set; }
 
         public virtual ICollection<UserRole> UserRole { get; set; }
+
+        public bool Enabled { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public int ModifiedBy { get; set; }
     }
 }

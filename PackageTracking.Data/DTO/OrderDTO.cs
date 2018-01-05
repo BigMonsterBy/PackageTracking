@@ -1,9 +1,5 @@
-﻿using PackageTracking.Data.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PackageTracking.Data.DTO
 {
@@ -12,7 +8,7 @@ namespace PackageTracking.Data.DTO
     {
         #region constructor
         //MARK THE PRIMARY KEY!!!
-        public OrderDTO(Orders order)
+        public OrderDTO(Order order)
         {
             OrderID = order.OrderID;
             GTIN = order.GTIN;

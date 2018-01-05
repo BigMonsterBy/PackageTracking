@@ -1,20 +1,21 @@
-﻿using System;
+﻿using PackageTracking.Data.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PackageTracking.Data.DAL
+namespace PackageTracking.Data
 {
     [Serializable]
-    public partial class Orders
+    public class Order : IAuditable
     {
-        //MARK THE PRIMARY KEY!!!
-        public Orders()
+        public Order()
         {
-            Pack = new List<Pack>();
+            Packs = new List<Pack>();
         }
-
+        [Key]
         public int OrderID { get; set; }
         public int GTIN { get; set; }
         public int ShipID { get; set; }
@@ -39,6 +40,11 @@ namespace PackageTracking.Data.DAL
         public int? ShipOrderID { get; set; }
 
         public virtual Ship Ship { get; set; }
-        public virtual ICollection<Pack> Pack { get; set; }
+        public virtual ICollection<Pack> Packs { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public int ModifiedBy { get; set; }
     }
 }
