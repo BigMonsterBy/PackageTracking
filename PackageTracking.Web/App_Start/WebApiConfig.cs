@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PackageTracking.Web.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -11,6 +12,7 @@ namespace PackageTracking.Web
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.Filters.Add(new ApiAuthFilter());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

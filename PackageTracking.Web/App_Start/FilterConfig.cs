@@ -9,7 +9,7 @@ namespace PackageTracking.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new AuthorizationFilter());
+            filters.Add(new WebAuthFilter());
         }
     }
 }

@@ -13,6 +13,7 @@ using PackageTracking.Web;
 
 namespace PackageTracking.Web.Api
 {
+    [Authorize]
     public class UserController : ApiController
     {
         private readonly PackageTrackingContext packageTrackingContext;
@@ -25,6 +26,7 @@ namespace PackageTracking.Web.Api
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public HttpResponseMessage Login(string userName, string userPassword)
         {
             try

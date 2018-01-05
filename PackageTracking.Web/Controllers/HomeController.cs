@@ -8,9 +8,9 @@ using PackageTracking.Web;
 
 namespace PackageTracking.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        [Authorize]
         public ActionResult Index()
         {
             var userCookie = HttpContext.Request.Cookies[Constantes.UserCookieName];
@@ -24,12 +24,14 @@ namespace PackageTracking.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ViewResult Logon()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Logon(LogonViewModel model)
         {
             var apiUserController = DependencyResolver.Current.GetService<Api.UserController>();
