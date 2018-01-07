@@ -183,6 +183,7 @@
     <Compile Include="Infrastructure\WebAuthFilter.cs" />
     <Compile Include="Infrastructure\Chipher.cs" />
     <Compile Include="Infrastructure\Constantes.cs" />
+    <Compile Include="Infrastructure\Services\DataService.cs" />
     <Compile Include="Infrastructure\Services\UserService.cs" />
     <Compile Include="Models\LogonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
