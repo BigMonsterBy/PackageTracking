@@ -7,15 +7,24 @@ using System.Web;
 
 namespace PackageTracking.Web.Infrastructure.Services
 {
-    public class DataService
+    public interface IDataService
     {
+        void WriteObjectToDb<T>(T obj, DbSet where);
+    }
+
+    public class DataService : IDataService
+    {
+        private readonly PackageTrackingContext _packageTrackingContext;
+
+        public DataService(PackageTrackingContext packageTrackingContext)
+        {
+            _packageTrackingContext = packageTrackingContext;
+        }
+
         public void WriteObjectToDb<T>(T obj, DbSet where)
         {
-            using (PackageTrackingContext db = new PackageTrackingContext(null))
-            {
-                where.Add(obj);
-                db.SaveChanges();
-            }
+            where.Add(obj);
+            _packageTrackingContext.SaveChanges();
         }
     }
 }

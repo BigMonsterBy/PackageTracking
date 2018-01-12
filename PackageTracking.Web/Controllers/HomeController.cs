@@ -36,7 +36,7 @@ namespace PackageTracking.Web.Controllers
         {
             var apiUserController = DependencyResolver.Current.GetService<Api.UserController>();
 
-            if (apiUserController.Login(model.Name, model.Password, model.UserTimeZone).StatusCode == System.Net.HttpStatusCode.OK)
+            if (apiUserController.Login(model.Name, model.Password, TimeZoneInfo.Local).StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return RedirectToAction("Index");
             }

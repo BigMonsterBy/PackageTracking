@@ -42,6 +42,7 @@ namespace PackageTracking.Web
             container.Register<IUserContextProvider, UserContextProvider>(Lifestyle.Scoped);
             container.Register<PackageTrackingContext, PackageTrackingContext>(Lifestyle.Scoped);
             container.Register<IUserService, UserService>(Lifestyle.Scoped);
+            container.Register<IDataService, DataService>(Lifestyle.Scoped);
             // Register your types, for instance:
             //container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
 

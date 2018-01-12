@@ -17,6 +17,6 @@ namespace PackageTracking.Web.Models
         public string Password { get; set; }
 
         [Required]
-        public TimeZoneInfo UserTimeZone { get; set; }
+        public string UserTimeZone { get; set; }
     }
 }
