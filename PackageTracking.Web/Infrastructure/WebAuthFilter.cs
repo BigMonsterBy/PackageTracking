@@ -6,6 +6,7 @@ using PackageTracking.Web.Infrastructure.Services;
 using System.Web.Mvc;
 using PackageTracking.Web;
 using System.Web.Routing;
+using PackageTracking.Core;
 
 namespace PackageTracking.Web.Infrastructure
 {
@@ -31,7 +32,9 @@ namespace PackageTracking.Web.Infrastructure
                 if (int.TryParse(userCookie.Value, out int userId))
                 {
                     var user = userService.GetUser(userId);
-                    userService.SetPrincipal(user);
+                    //replace null with the correct TimeZoneInfo
+                    var userContext =(UserContext) HttpContext.Current.Items[Constantes.UserContext];
+                    userService.SetPrincipal(user, userContext.UserTimeZone);
                     return;
                 }
             }

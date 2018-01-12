@@ -27,12 +27,12 @@ namespace PackageTracking.Web.Api
 
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Login(string userName, string userPassword)
+        public HttpResponseMessage Login(string userName, string userPassword, TimeZoneInfo userTimeZone)
         {
             try
             {
                 var user = _userService.GetUser(userName, userPassword);
-                _userService.SetPrincipal(user);
+                _userService.SetPrincipal(user, userTimeZone);
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
             catch

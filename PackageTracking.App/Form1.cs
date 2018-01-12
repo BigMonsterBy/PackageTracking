@@ -10,11 +10,22 @@ using System.Windows.Forms;
 
 namespace PackageTracking.App
 {
-    public partial class Form1 : Form
+    public partial class AuthorizeForm : Form
     {
-        public Form1()
+        public AuthorizeForm()
         {
             InitializeComponent();
+        }
+
+        private void ClearInputButton_Click(object sender, EventArgs e)
+        {
+            loginTxtBox.Text = "";
+            passTxtBox.Text = "";
+        }
+
+        private void ShowErrorMessageBox()
+        {
+            MessageBox.Show("Неверный логин или пароль.", "Ошибка!", MessageBoxButtons.OK);
         }
     }
 }

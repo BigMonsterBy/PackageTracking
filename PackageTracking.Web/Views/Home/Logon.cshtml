@@ -1,10 +1,10 @@
 ﻿@model PackageTracking.Web.Models.LogonViewModel
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>LogonViewModel</h4>
         <hr />
@@ -26,8 +26,26 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.UserTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model=>model.UserTimeZone)
+                @Html.ValidationMessageFor(model => model.UserTimeZone, TimeZoneInfo.Local.Id, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            function getTimeZoneInfo() {
+                var now = new Date();
+                var tz = now.toTimeString();
+                var tzstr = tz.split("(");
+                var timezoneid = tzstr[1].toString().replace(")", "");
+
+            }
+        </script>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
+                <input type="submit" value="Login" class="btn btn-default" onclick="getTimeZoneInfo(model)" />
             </div>
         </div>
     </div>

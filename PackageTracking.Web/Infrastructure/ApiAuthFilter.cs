@@ -37,7 +37,8 @@ namespace PackageTracking.Web.Infrastructure
                 if (int.TryParse(userCookie.First()[Constantes.UserCookieName].Value, out int userId))
                 {
                     var user = userService.GetUser(userId);
-                    userService.SetPrincipal(user);
+                    //replace null with correct TimeZomeInfo
+                    userService.SetPrincipal(user, null);
                     return;
                 }
             }

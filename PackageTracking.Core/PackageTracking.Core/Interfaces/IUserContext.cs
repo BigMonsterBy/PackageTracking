@@ -9,5 +9,6 @@ namespace PackageTracking.Core.Interfaces
     public interface IUserContext
     {
         int UserId { get; }
+        TimeZoneInfo UserTimeZone { get; set; }
     }
 }

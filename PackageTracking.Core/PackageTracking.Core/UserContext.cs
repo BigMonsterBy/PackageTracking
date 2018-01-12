@@ -10,5 +10,6 @@ namespace PackageTracking.Core
     public class UserContext : IUserContext
     {
         public int UserId { get; set; }
+        public TimeZoneInfo UserTimeZone { get; set; }
     }
 }

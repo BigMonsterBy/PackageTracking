@@ -54,6 +54,7 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 user.Password = Chipher.GetMd5Hash(user.Password);
                 _packageTrackingContext.User.Add(user);
                 _packageTrackingContext.SaveChanges();
