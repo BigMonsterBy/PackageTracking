@@ -24,14 +24,7 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserTimeZone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model=>model.UserTimeZone)
-                @Html.ValidationMessageFor(model => model.UserTimeZone, TimeZoneInfo.Local.Id, new { @class = "text-danger" })
-            </div>
-        </div>
+        @Model.UserTimeZone=TimeZoneInfo.Local;
 
         <script type="text/javascript">
             function getTimeZoneInfo() {

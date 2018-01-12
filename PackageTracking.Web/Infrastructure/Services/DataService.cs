@@ -11,7 +11,7 @@ namespace PackageTracking.Web.Infrastructure.Services
     {
         public void WriteObjectToDb<T>(T obj, DbSet where)
         {
-            using (PackageTrackingContext db = new PackageTrackingContext())
+            using (PackageTrackingContext db = new PackageTrackingContext(null))
             {
                 where.Add(obj);
                 db.SaveChanges();
