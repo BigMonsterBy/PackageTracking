@@ -32,9 +32,8 @@ namespace PackageTracking.Web.Infrastructure
                 if (int.TryParse(userCookie.Value, out int userId))
                 {
                     var user = userService.GetUser(userId);
-                    //replace null with the correct TimeZoneInfo
                     var userContext =(UserContext) HttpContext.Current.Items[Constantes.UserContext];
-                    userService.SetPrincipal(user, userContext.UserTimeZone);
+                    userService.SetPrincipal(user, userContext.UserTimeOffset);
                     return;
                 }
             }

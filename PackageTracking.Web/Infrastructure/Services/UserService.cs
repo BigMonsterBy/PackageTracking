@@ -14,7 +14,7 @@ namespace PackageTracking.Web.Infrastructure.Services
     {
         User GetUser(int userId);
         User GetUser(string userName, string userPassword);
-        void SetPrincipal(User user, TimeZoneInfo userTimeZone);
+        void SetPrincipal(User user, int userTimeOffset);
     }
 
     public class UserService : IUserService
@@ -37,7 +37,7 @@ namespace PackageTracking.Web.Infrastructure.Services
             return packageTrackingContext.User.Single(u => u.Name == userName && u.Password == userPassword);
         }
 
-        public void SetPrincipal(User user, TimeZoneInfo userTimeZone)
+        public void SetPrincipal(User user, int userTimeOffset)
         {
             var webIdentity = new WebIdentity { Name = user.Name, IsAuthenticated = true };
             var webPrincipal = new WebPrincipal { Identity = webIdentity };
@@ -47,7 +47,7 @@ namespace PackageTracking.Web.Infrastructure.Services
             {
                 HttpContext.Current.User = webPrincipal;
                 //add time zone info to user context
-                HttpContext.Current.Items[Constantes.UserContext] = new UserContext { UserId = user.UserId, UserTimeZone=userTimeZone };
+                HttpContext.Current.Items[Constantes.UserContext] = new UserContext { UserId = user.UserId, UserTimeOffset=userTimeOffset };
             }
             HttpContext.Current.Response.Cookies.Add(new HttpCookie(Constantes.UserCookieName, user.UserId.ToString()));
         }

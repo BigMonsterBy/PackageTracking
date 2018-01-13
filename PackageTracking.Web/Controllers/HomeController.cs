@@ -35,8 +35,9 @@ namespace PackageTracking.Web.Controllers
         public ActionResult Logon(LogonViewModel model)
         {
             var apiUserController = DependencyResolver.Current.GetService<Api.UserController>();
-
-            if (apiUserController.Login(model.Name, model.Password, TimeZoneInfo.Local).StatusCode == System.Net.HttpStatusCode.OK)
+            
+            if (apiUserController.Login(model.Name, model.Password, model.UserTimeOffset).StatusCode
+                == System.Net.HttpStatusCode.OK)
             {
                 return RedirectToAction("Index");
             }

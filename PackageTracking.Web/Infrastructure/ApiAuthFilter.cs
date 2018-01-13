@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web;
+using PackageTracking.Core;
 
 namespace PackageTracking.Web.Infrastructure
 {
@@ -37,8 +38,8 @@ namespace PackageTracking.Web.Infrastructure
                 if (int.TryParse(userCookie.First()[Constantes.UserCookieName].Value, out int userId))
                 {
                     var user = userService.GetUser(userId);
-                    //replace null with correct TimeZomeInfo
-                    userService.SetPrincipal(user, null);
+                    var userContext = (UserContext)HttpContext.Current.Items[Constantes.UserContext];
+                    userService.SetPrincipal(user, userContext.UserTimeOffset);
                     return;
                 }
             }

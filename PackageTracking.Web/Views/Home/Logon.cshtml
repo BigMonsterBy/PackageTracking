@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        @Html.HiddenFor(model => Model.UserTimeZone, new { id = "userTimeZone" })
+        @Html.HiddenFor(model => Model.UserTimeOffset, new { id = "userTimeZone" })
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -38,9 +38,7 @@
 <script type="text/javascript">
     function getTimeZoneInfo() {
         var now = new Date();
-        var tz = now.toTimeString();
-        var tzstr = tz.split("(");
-        var timezoneid = tzstr[1].toString().replace(")", "");
+        var timezoneid = now.getTimezoneOffset();
         return timezoneid;
     }
 
