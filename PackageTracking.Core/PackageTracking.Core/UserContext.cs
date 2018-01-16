@@ -11,5 +11,11 @@ namespace PackageTracking.Core
     {
         public int UserId { get; set; }
         public int UserTimeOffset { get; set; }
+
+        public UserContext(int UserId, int UserTimeOffset)
+        {
+            this.UserId = UserId;
+            this.UserTimeOffset = UserTimeOffset;
+        }
     }
 }

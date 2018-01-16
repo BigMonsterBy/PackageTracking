@@ -179,6 +179,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\ApiAuthFilter.cs" />
+    <Compile Include="Infrastructure\Services\AuthentificationService.cs" />
+    <Compile Include="Infrastructure\Services\CookieService.cs" />
     <Compile Include="Infrastructure\UserContextProvider.cs" />
     <Compile Include="Infrastructure\WebAuthFilter.cs" />
     <Compile Include="Infrastructure\Chipher.cs" />

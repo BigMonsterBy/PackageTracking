@@ -46,10 +46,10 @@ namespace PackageTracking.Web.Infrastructure.Services
             if (HttpContext.Current != null)
             {
                 HttpContext.Current.User = webPrincipal;
-                //add time zone info to user context
-                HttpContext.Current.Items[Constantes.UserContext] = new UserContext { UserId = user.UserId, UserTimeOffset=userTimeOffset };
             }
-            HttpContext.Current.Response.Cookies.Add(new HttpCookie(Constantes.UserCookieName, user.UserId.ToString()));
+            //add time zone info and id to user cookies
+            CookieService.AddCookie(Constantes.UserCookieName, user.UserId);
+            CookieService.AddCookie(Constantes.UserTimeOffset, userTimeOffset);
         }
 
     }

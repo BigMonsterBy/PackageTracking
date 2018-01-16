@@ -17,33 +17,18 @@ namespace PackageTracking.Web.Infrastructure
 {
     public class ApiAuthFilter : AuthorizationFilterAttribute
     {
-        private readonly IUserService userService;
         public ApiAuthFilter()
-        {
-            var resolver = System.Web.Mvc.DependencyResolver.Current;
-            userService = (IUserService)resolver.GetService(typeof(IUserService));
-        }
+        {}
 
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            if (HttpContext.Current.User?.Identity?.IsAuthenticated == true)
-                return;
-
-            if (actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any())
-                return;
-
-            var userCookie = actionContext.Request.Headers.GetCookies(Constantes.UserCookieName);
-            if (userCookie.Any())
+            AuthentificationService authentificationService = new AuthentificationService(actionContext);
+            if (!authentificationService.IsAuthorized())
             {
-                if (int.TryParse(userCookie.First()[Constantes.UserCookieName].Value, out int userId))
-                {
-                    var user = userService.GetUser(userId);
-                    var userContext = (UserContext)HttpContext.Current.Items[Constantes.UserContext];
-                    userService.SetPrincipal(user, userContext.UserTimeOffset);
-                    return;
-                }
+                base.OnAuthorization(actionContext);
             }
-            base.OnAuthorization(actionContext);
+            else
+                return;
         }
     }
 }

@@ -86,7 +86,14 @@ namespace PackageTracking.Data
                         break;
                 }
             }
-            return base.SaveChanges();
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (Exception e) {
+               var c= e.InnerException;
+                return 0;
+            }
         }
     }
 }

@@ -7,38 +7,26 @@ using System.Web.Mvc;
 using PackageTracking.Web;
 using System.Web.Routing;
 using PackageTracking.Core;
+using System.Web.Http.Controllers;
 
 namespace PackageTracking.Web.Infrastructure
 {
     public class WebAuthFilter : IAuthorizationFilter
     {
-        private readonly IUserService userService;
         public WebAuthFilter()
-        {
-            userService = DependencyResolver.Current.GetService<IUserService>();
-        }
+        { }
+        
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (HttpContext.Current.User?.Identity?.IsAuthenticated == true)
-                return;
-
-            if (filterContext.ActionDescriptor.GetCustomAttributes(typeof(AllowAnonymousAttribute), false).Any())
-                return;
-
-            var userCookie = filterContext.HttpContext.Request.Cookies.Get(Constantes.UserCookieName);
-            if (userCookie != null)
+            AuthentificationService authentificationService = new AuthentificationService(filterContext);
+            if (!authentificationService.IsAuthorized())
             {
-                if (int.TryParse(userCookie.Value, out int userId))
-                {
-                    var user = userService.GetUser(userId);
-                    var userContext =(UserContext) HttpContext.Current.Items[Constantes.UserContext];
-                    userService.SetPrincipal(user, userContext.UserTimeOffset);
-                    return;
-                }
+                var urlHelper = new UrlHelper(filterContext.RequestContext);
+                filterContext.Result = new RedirectResult(urlHelper.Action("Logon", "Home"));
             }
-            var urlHelper = new UrlHelper(filterContext.RequestContext);
-            filterContext.Result = new RedirectResult(urlHelper.Action("Logon", "Home"));
+            else
+                return;
         }
     }
 }

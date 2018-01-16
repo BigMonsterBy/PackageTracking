@@ -1,4 +1,6 @@
-﻿using PackageTracking.Core.Interfaces;
+﻿using PackageTracking.Core;
+using PackageTracking.Core.Interfaces;
+using PackageTracking.Web.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +12,10 @@ namespace PackageTracking.Web.Infrastructure
     {
         public IUserContext GetUserContext()
         {
-            var userContext = HttpContext.Current.Items[Constantes.UserContext];
-            return (IUserContext)userContext;
+            //var userContext = HttpContext.Current.Items[Constantes.UserContext];
+            UserContext userContext = new UserContext(Int16.Parse(CookieService.GetCookieStringValue(Constantes.UserCookieName)),
+                Int16.Parse(CookieService.GetCookieStringValue(Constantes.UserTimeOffset)));
+            return userContext;
         }
     }
 }
