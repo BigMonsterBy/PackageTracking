@@ -81,6 +81,8 @@ namespace PackageTracking.Data
                     case EntityState.Deleted:
                         break;
                     case EntityState.Modified:
+                        entry.Property(w => w.CreatedOn).IsModified = false;
+                        entry.Property(w => w.CreatedBy).IsModified = false;
                         entry.Entity.ModifiedOn = auditDate;
                         entry.Entity.ModifiedBy = userContext.UserId;
                         break;
