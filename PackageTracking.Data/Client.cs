@@ -19,10 +19,12 @@ namespace PackageTracking.Data
 
         [Required]
         [StringLength(250)]
+        [Display(Name = "Название")]
         public string Name { get; set; }
 
         public virtual ICollection<Warehouse> Warehouse { get; set; }
 
+        [Display(Name = "Активен")]
         public bool Enabled { get; set; }
 
         public DateTime CreatedOn { get; set; }

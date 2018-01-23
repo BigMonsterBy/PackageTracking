@@ -13,16 +13,20 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <!--this is a menu for mobile devices - we don't implement it
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
+                    <span class="icon-bar">@Html.ActionLink("Home", "Index", "Home")</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                -->
+                @Html.ActionLink("Package Tracking", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Клиенты", "Index", "Clients")</li>
+                    <li>@Html.ActionLink("Отгрузки", "Index", "Ships")</li>
+                    <li>@Html.ActionLink("Админы", "Index", "Users")</li>
                 </ul>
             </div>
         </div>
@@ -30,9 +34,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <footer></footer>
     </div>
 
     @RenderSection("scripts", required: false)
