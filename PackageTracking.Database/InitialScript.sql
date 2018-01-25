@@ -27,6 +27,7 @@ CREATE TABLE [dbo].[Client](
 	[CreatedBy] [int] NOT NULL,
 	[ModifiedOn] [datetime] NOT NULL,
 	[ModifiedBy] [int] NOT NULL,
+	[Address][nvarchar](200)NOT NULL
  CONSTRAINT [PK_Client] PRIMARY KEY CLUSTERED 
 (
 	[ClientId] ASC
@@ -244,6 +245,10 @@ CREATE TABLE [dbo].[User](
 	[CreatedBy] [int] NOT NULL,
 	[ModifiedOn] [datetime] NOT NULL,
 	[ModifiedBy] [int] NOT NULL,
+	[LastLogOn] [datetime] NOT NULL,
+	[Email][nvarchar](100) NOT NULL,
+	[PhoneNumber][nvarchar](20)NULL,
+
  CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC
@@ -282,6 +287,14 @@ CREATE TABLE [dbo].[Warehouse](
 	[CreatedBy] [int] NOT NULL,
 	[ModifiedOn] [datetime] NOT NULL,
 	[ModifiedBy] [int] NOT NULL,
+	[Email][nvarchar](100) NOT NULL,
+	[Skype][nvarchar](100)NULL,
+	[Telegram][nvarchar](100)NULL,
+	[PhoneNumber][nvarchar](20)NULL,
+	[WorkingTime][nvarchar](50)NULL,
+	[Address][nvarchar](100)NOT NULL,
+	[ResponsiblePerson][nvarchar](200)NOT NULL,
+
  CONSTRAINT [PK_Warehouse] PRIMARY KEY CLUSTERED 
 (
 	[WarehouseId] ASC
@@ -337,6 +350,6 @@ ALTER TABLE [dbo].[Warehouse] CHECK CONSTRAINT [FK_Warehouse_Client]
 GO
 
 IF NOT EXISTS(SELECT * FROM [User] WHERE UserId = 1) BEGIN
-	INSERT [User] ([Name], [Password], IsGlobalAdmin, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy)
-	VALUES('admin', '21232f297a57a5a743894a0e4a801fc3', 1, GetDate(), 1, GetDate(), 1)
+	INSERT [User] ([Name], [Password], IsGlobalAdmin, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy,LastLogOn,Email)
+	VALUES('admin', '21232f297a57a5a743894a0e4a801fc3', 1, GetDate(), 1, GetDate(), 1,GetDate(),'admin@localhost.by')
 END
