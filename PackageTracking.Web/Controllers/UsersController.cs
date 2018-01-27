@@ -50,12 +50,13 @@ namespace PackageTracking.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,Name,Password,IsGlobalAdmin")] User user)
+        public ActionResult Create([Bind(Include = "UserId,Name,Password,IsGlobalAdmin,Email")] User user)
         {
             if (ModelState.IsValid)
             {
                 
                 user.Password = Chipher.GetMd5Hash(user.Password);
+                user.LastLogOn = DateTime.UtcNow;
                 _packageTrackingContext.User.Add(user);
                 _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
@@ -84,12 +85,14 @@ namespace PackageTracking.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,Name,Password,IsGlobalAdmin")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,Name,Password,IsGlobalAdmin,Email,PhoneNumber")] User user)
         {
             if (ModelState.IsValid)
             {
-                user.Password = Chipher.GetMd5Hash(user.Password);
-                _packageTrackingContext.Entry(user).State = EntityState.Modified;
+                var updatedUser = _packageTrackingContext.User.Find(user.UserId);
+                updatedUser.PhoneNumber = user.PhoneNumber;
+                //user.Password = Chipher.GetMd5Hash(user.Password);
+                _packageTrackingContext.Entry(updatedUser).State = EntityState.Modified;
                 _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
             }

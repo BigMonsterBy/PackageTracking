@@ -33,5 +33,22 @@ namespace PackageTracking.Data
         public int CreatedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
         public int ModifiedBy { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Email { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Address { get; set; }
+        [Required]
+        [StringLength(200)]
+        public string ResponsiblePerson { get; set; }
+        [StringLength(100)]
+        public string Skype { get; set; }
+        [StringLength(100)]
+        public string Telegram { get; set; }
+        [StringLength(20)]
+        public string PhoneNumber { get; set; }
+        [StringLength(50)]
+        public string WorkingTime { get; set; }
     }
 }

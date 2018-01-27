@@ -33,6 +33,9 @@ namespace PackageTracking.Web.Api
             {
                 var user = _userService.GetUser(userName, userPassword);
                 _userService.SetPrincipal(user, userTimeOffset);
+                var us = packageTrackingContext.User.Find(user.UserId);
+                us.LastLogOn = DateTime.UtcNow;
+                packageTrackingContext.SaveChanges();
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
             catch

@@ -50,7 +50,8 @@ namespace PackageTracking.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "WarehouseId,ClientId,Name")] Warehouse warehouse)
+        public ActionResult Create([Bind(Include = "WarehouseId,ClientId,Name,Email,PhoneNumber,Skype,Telegram,Address," +
+            "WorkingTime,ResponsiblePerson")] Warehouse warehouse)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +100,8 @@ namespace PackageTracking.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "WarehouseId,ClientId,Name")] Warehouse warehouse)
+        public ActionResult Edit([Bind(Include = "WarehouseId,ClientId,Name,Email,PhoneNumber,Skype,Telegram,Address," +
+            "WorkingTime,ResponsiblePerson")] Warehouse warehouse)
         {
             if (ModelState.IsValid)
             {

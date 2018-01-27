@@ -22,6 +22,10 @@ namespace PackageTracking.Data
         [Display(Name = "Название")]
         public string Name { get; set; }
 
+        [Required]
+        [Display(Name="Юридический адрес")]
+        public string Address { get; set; }
+
         public virtual ICollection<Warehouse> Warehouse { get; set; }
 
         [Display(Name = "Активен")]
