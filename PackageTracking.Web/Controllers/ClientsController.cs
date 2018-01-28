@@ -67,6 +67,7 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                _packageTrackingContext.Client.Attach(client);
                 _packageTrackingContext.Entry(client).State = EntityState.Modified;
                 _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");

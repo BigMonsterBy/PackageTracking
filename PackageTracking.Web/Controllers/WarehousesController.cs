@@ -105,6 +105,7 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                _packageTrackingContext.Warehouse.Attach(warehouse);
                 _packageTrackingContext.Entry(warehouse).State = EntityState.Modified;
                 _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Index");
