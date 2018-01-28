@@ -1,10 +1,6 @@
 ﻿@model IEnumerable<PackageTracking.Data.Warehouse>
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", "Warehouses")
 </p>
 <table class="table">
     <tr>
@@ -14,7 +10,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -27,9 +22,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.WarehouseId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.WarehouseId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.WarehouseId })
+                @Html.ActionLink("Details","Details","Warehouses", new { id = item.WarehouseId },null) |
+                @Html.ActionLink("Edit", "Edit","Warehouses", new { id = item.WarehouseId },null) |
+                @Html.ActionLink("Delete", "Delete","Warehouses", new { id = item.WarehouseId },null)
             </td>
         </tr>
     }

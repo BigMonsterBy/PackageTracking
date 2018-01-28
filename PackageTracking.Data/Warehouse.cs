@@ -35,20 +35,27 @@ namespace PackageTracking.Data
         public int ModifiedBy { get; set; }
         [Required]
         [StringLength(100)]
+        [Display(Name="Email")]
         public string Email { get; set; }
         [Required]
         [StringLength(100)]
+        [Display(Name="Юридический адрес")]
         public string Address { get; set; }
         [Required]
         [StringLength(200)]
+        [Display(Name="Ответственное лицо")]
         public string ResponsiblePerson { get; set; }
         [StringLength(100)]
+        [Display(Name="Skype")]
         public string Skype { get; set; }
         [StringLength(100)]
+        [Display(Name="Telegram")]
         public string Telegram { get; set; }
         [StringLength(20)]
+        [Display(Name="Номер телефона")]
         public string PhoneNumber { get; set; }
         [StringLength(50)]
+        [Display(Name="Рабочее время")]
         public string WorkingTime { get; set; }
     }
 }

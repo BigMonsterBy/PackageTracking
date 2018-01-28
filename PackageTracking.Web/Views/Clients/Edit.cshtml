@@ -37,6 +37,10 @@
             <input type="submit" value="Сохранить" class="btn btn-default" />
         </div>
     </div>
+    <div class="form-group">
+        @Html.DisplayNameFor(model=>model.Warehouse)
+    </div>
+    @Html.Partial("ClientsWarehouses", Model.Warehouse)
 </div>
 }
 
