@@ -172,6 +172,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WarehousesController.cs" />
     <Compile Include="Controllers\WebController.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Infrastructure\ApiAuthFilter.cs" />
     <Compile Include="Infrastructure\Services\AuthentificationService.cs" />
     <Compile Include="Infrastructure\Services\CookieService.cs" />
+    <Compile Include="Infrastructure\Services\JsonService.cs" />
     <Compile Include="Infrastructure\UserContextProvider.cs" />
     <Compile Include="Infrastructure\WebAuthFilter.cs" />
     <Compile Include="Infrastructure\Chipher.cs" />
@@ -254,9 +256,11 @@
     <Content Include="Views\Warehouses\Edit.cshtml" />
     <Content Include="Views\Warehouses\Index.cshtml" />
     <Content Include="Views\Clients\ClientsWarehouses.cshtml" />
+    <Content Include="Views\Income\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\PartialViews\" />
   </ItemGroup>
