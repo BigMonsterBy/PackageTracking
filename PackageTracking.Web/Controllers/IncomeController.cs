@@ -55,7 +55,8 @@ namespace PackageTracking.Web.Controllers
                     }
                     catch (Exception e)
                     {
-                        var message = e.Message;
+                        //var message = e.Message;
+                        throw e;
                     }
                 }
             }

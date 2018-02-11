@@ -54,6 +54,10 @@ namespace PackageTracking.Data
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Ship);
 
+            modelBuilder.Entity<Ship>()
+                .Property(e => e.ShipID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+
             modelBuilder.Entity<Order>()
                 .ToTable("Order")
                 .HasMany(e => e.Packs)

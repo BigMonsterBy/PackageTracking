@@ -18,7 +18,7 @@ namespace PackageTracking.Data
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ShipID { get; set; }
         public string Number { get; set; }
         public DateTime SDate { get; set; }
