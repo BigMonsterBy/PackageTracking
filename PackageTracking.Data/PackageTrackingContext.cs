@@ -24,6 +24,7 @@ namespace PackageTracking.Data
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
+        public virtual DbSet<Ship> Ship { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

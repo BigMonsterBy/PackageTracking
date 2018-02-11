@@ -1,0 +1,17 @@
+﻿{
+  "Ships": [
+    {
+      "Number": "118сб",
+      "ShipID": 127796,
+      "SDate": "2016-09-08T12:00:00",
+      "Note": "отгр. 08.09",
+      "State": 1,
+      "LastEditDate": "2017-04-26T12:39:03.583",
+      "CreationDate": "2017-04-26T12:39:03.583",
+      "rowguid": "4d83a42e-642a-e711-b5f3-68b5996e9c3c",
+      "shipFromSborka": false,
+      "CreateUser": "mt_pack1",
+      "Orders": []
+    }
+  ]
+}

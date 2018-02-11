@@ -58,6 +58,7 @@
     <Compile Include="Income.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Pack.cs" />
+    <Compile Include="Rootobject.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="DTO\ArticleDTO.cs" />
     <Compile Include="DTO\DetailDTO.cs" />
