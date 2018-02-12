@@ -185,7 +185,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Role](
-	[RoleId] [int] IDENTITY(1,1) NOT NULL,
+	[RoleId] [int] NOT NULL,
 	[Name] [nvarchar](250) NOT NULL,
 	[Access] [int] NOT NULL,
  CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
@@ -353,3 +353,8 @@ IF NOT EXISTS(SELECT * FROM [User] WHERE UserId = 1) BEGIN
 	INSERT [User] ([Name], [Password], IsGlobalAdmin, CreatedOn, CreatedBy, ModifiedOn, ModifiedBy,LastLogOn,Email)
 	VALUES('admin', '21232f297a57a5a743894a0e4a801fc3', 1, GetDate(), 1, GetDate(), 1,GetDate(),'admin@localhost.by')
 END
+
+if not exists (select * from dbo.Role) begin
+	insert dbo.Role(RoleId, Name, Access) values (10, 'Кладовщик', 10)
+	insert dbo.Role(RoleId, Name, Access) values (20, 'Менеджер', 20)
+end

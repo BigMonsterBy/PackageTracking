@@ -46,10 +46,9 @@ namespace PackageTracking.Web.Controllers
                         Rootobject a = JsonConvert.DeserializeObject<Rootobject>(y);
                         foreach (Ship s in a.Ships)
                         {
-                            _packageTrackingContext.Ship.Attach(s);
-                            _packageTrackingContext.Entry(s).State = EntityState.Added;
-                            //_packageTrackingContext.Ship.Find(s.ShipID).ShipID = s.ShipID;
-                            //_packageTrackingContext.Ship.Add(s);
+                            //_packageTrackingContext.Ship.Attach(s);
+                            //_packageTrackingContext.Entry(s).State = EntityState.Added;
+                            _packageTrackingContext.Ship.Add(s);
                             _packageTrackingContext.SaveChanges();
                         }
                     }

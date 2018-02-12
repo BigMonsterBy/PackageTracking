@@ -10,7 +10,7 @@ namespace PackageTracking.Data
     {
         public Client()
         {
-            Warehouse = new HashSet<Warehouse>();
+            Warehouses = new HashSet<Warehouse>();
         }
 
         [Key]
@@ -26,7 +26,7 @@ namespace PackageTracking.Data
         [Display(Name="Юридический адрес")]
         public string Address { get; set; }
 
-        public virtual ICollection<Warehouse> Warehouse { get; set; }
+        public virtual ICollection<Warehouse> Warehouses { get; set; }
 
         [Display(Name = "Активен")]
         public bool Enabled { get; set; }
