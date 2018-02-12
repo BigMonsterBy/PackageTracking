@@ -45,9 +45,6 @@ namespace PackageTracking.Web.Controllers
             return View();
         }
 
-        // POST: Warehouses/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "WarehouseId,ClientId,Name,Email,PhoneNumber,Skype,Telegram,Address," +
@@ -63,23 +60,7 @@ namespace PackageTracking.Web.Controllers
             ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
-        /*[HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "WarehouseId,ClientId,Name")] Warehouse warehouse)
-        {
-            if (ModelState.IsValid)
-            {
-                DbSet dbSet = _packageTrackingContext.Warehouse;
-                dbSet.Add(warehouse);
-                _packageTrackingContext.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
-            return View(warehouse);
-        }*/
-
-        // GET: Warehouses/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,9 +76,6 @@ namespace PackageTracking.Web.Controllers
             return View(warehouse);
         }
 
-        // POST: Warehouses/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "WarehouseId,ClientId,Name,Email,PhoneNumber,Skype,Telegram,Address," +
@@ -114,30 +92,20 @@ namespace PackageTracking.Web.Controllers
             return View(warehouse);
         }
 
-        // GET: Warehouses/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Enable(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Warehouse warehouse = _packageTrackingContext.Warehouse.Find(id);
+            var warehouse = _packageTrackingContext.Warehouse.Find(id);
             if (warehouse == null)
             {
                 return HttpNotFound();
             }
-            return View(warehouse);
-        }
-
-        // POST: Warehouses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Warehouse warehouse = _packageTrackingContext.Warehouse.Find(id);
-            _packageTrackingContext.Warehouse.Remove(warehouse);
+            warehouse.Enabled = !warehouse.Enabled;
             _packageTrackingContext.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", "Clients");
         }
     }
 }
