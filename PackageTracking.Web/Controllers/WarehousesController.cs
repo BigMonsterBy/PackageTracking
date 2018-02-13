@@ -19,8 +19,7 @@ namespace PackageTracking.Web.Controllers
         // GET: Warehouses
         public ActionResult Index()
         {
-            var warehouse = _packageTrackingContext.Warehouse.Include(w => w.Client);
-            return View(warehouse.ToList());
+            throw new NotSupportedException("Do not use this action for Warehouses.");
         }
 
         // GET: Warehouses/Details/5
@@ -39,10 +38,13 @@ namespace PackageTracking.Web.Controllers
         }
 
         // GET: Warehouses/Create
-        public ActionResult Create()
+        public ActionResult Create(int clientId)
         {
-            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name");
-            return View();
+            var warehouse = new Warehouse
+            {
+                Client = _packageTrackingContext.Client.Find(clientId)
+            };
+            return View(warehouse);
         }
 
         [HttpPost]
@@ -54,10 +56,8 @@ namespace PackageTracking.Web.Controllers
             {
                 _packageTrackingContext.Warehouse.Add(warehouse);
                 _packageTrackingContext.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Clients", new { id = warehouse.ClientId });
             }
-
-            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
 
@@ -72,7 +72,6 @@ namespace PackageTracking.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
 
@@ -86,9 +85,8 @@ namespace PackageTracking.Web.Controllers
                 _packageTrackingContext.Warehouse.Attach(warehouse);
                 _packageTrackingContext.Entry(warehouse).State = EntityState.Modified;
                 _packageTrackingContext.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Clients", new { id = warehouse.ClientId });
             }
-            ViewBag.ClientId = new SelectList(_packageTrackingContext.Client, "ClientId", "Name", warehouse.ClientId);
             return View(warehouse);
         }
 

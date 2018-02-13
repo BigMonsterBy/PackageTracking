@@ -17,6 +17,8 @@ namespace PackageTracking.Data
             : base("name=PackageTrackingContext")
         {
             _userContextProvider = userContextProvider;
+            Configuration.ProxyCreationEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public virtual DbSet<Client> Client { get; set; }
@@ -48,6 +50,9 @@ namespace PackageTracking.Data
                 .HasMany(e => e.UserRole)
                 .WithRequired(e => e.Warehouse)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Warehouse>()
+                .HasRequired(e => e.Client);
 
             modelBuilder.Entity<Ship>()
                 .ToTable("Ship")

@@ -21,12 +21,14 @@ namespace PackageTracking.Data
 
         [Required]
         [StringLength(250)]
+        [Display(Name="Название")]
         public string Name { get; set; }
 
         public virtual Client Client { get; set; }
 
         public virtual ICollection<UserRole> UserRole { get; set; }
 
+        [Display(Name = "Статус")]
         public bool Enabled { get; set; }
 
         public DateTime CreatedOn { get; set; }
