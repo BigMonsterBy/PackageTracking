@@ -27,7 +27,8 @@ CREATE TABLE [dbo].[Client](
 	[CreatedBy] [int] NOT NULL,
 	[ModifiedOn] [datetime] NOT NULL,
 	[ModifiedBy] [int] NOT NULL,
-	[Address][nvarchar](200)NOT NULL
+	[Address][nvarchar](200)NOT NULL,
+	[Note][nvarchar](MAX) NULL
  CONSTRAINT [PK_Client] PRIMARY KEY CLUSTERED 
 (
 	[ClientId] ASC

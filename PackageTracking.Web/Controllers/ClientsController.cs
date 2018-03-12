@@ -34,7 +34,7 @@ namespace PackageTracking.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,Name,Address")] Client client)
+        public ActionResult Create([Bind(Include = "ClientId,Name,Address,Note")] Client client)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace PackageTracking.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientId,Name,Address")] Client client)
+        public ActionResult Edit([Bind(Include = "ClientId,Name,Address,Note,Enabled")] Client client)
         {
             if (ModelState.IsValid)
             {

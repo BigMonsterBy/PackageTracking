@@ -54,6 +54,7 @@ namespace PackageTracking.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                warehouse.Enabled = true;
                 _packageTrackingContext.Warehouse.Add(warehouse);
                 _packageTrackingContext.SaveChanges();
                 return RedirectToAction("Edit", "Clients", new { id = warehouse.ClientId });
@@ -78,7 +79,7 @@ namespace PackageTracking.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "WarehouseId,ClientId,Name,Email,PhoneNumber,Skype,Telegram,Address," +
-            "WorkingTime,ResponsiblePerson")] Warehouse warehouse)
+            "WorkingTime,ResponsiblePerson,Enabled")] Warehouse warehouse)
         {
             if (ModelState.IsValid)
             {

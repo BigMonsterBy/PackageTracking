@@ -31,7 +31,15 @@ namespace PackageTracking.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Client>()
-                .ToTable("Client");
+                .ToTable("Client")
+                .HasRequired(e => e.Creator)
+                .WithMany()
+                .HasForeignKey(e => e.CreatedBy);
+
+            modelBuilder.Entity<Client>()
+                .HasRequired(e => e.Modifier)
+                .WithMany()
+                .HasForeignKey(e => e.ModifiedBy);
 
             modelBuilder.Entity<Role>()
                 .ToTable("Role")
@@ -45,11 +53,31 @@ namespace PackageTracking.Data
                 .WithRequired(e => e.User)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<User>()
+                .HasRequired(e => e.Creator)
+                .WithMany()
+                .HasForeignKey(e => e.CreatedBy);
+
+            modelBuilder.Entity<User>()
+                .HasRequired(e => e.Modifier)
+                .WithMany()
+                .HasForeignKey(e => e.ModifiedBy);
+
             modelBuilder.Entity<Warehouse>()
                 .ToTable("Warehouse")
-                .HasMany(e => e.UserRole)
+                .HasMany(e => e.UserRoles)
                 .WithRequired(e => e.Warehouse)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Warehouse>()
+                .HasRequired(e => e.Creator)
+                .WithMany()
+                .HasForeignKey(e => e.CreatedBy);
+
+            modelBuilder.Entity<Warehouse>()
+                .HasRequired(e => e.Modifier)
+                .WithMany()
+                .HasForeignKey(e => e.ModifiedBy);
 
             modelBuilder.Entity<Warehouse>()
                 .HasRequired(e => e.Client);
@@ -61,7 +89,6 @@ namespace PackageTracking.Data
 
             modelBuilder.Entity<Ship>()
                 .Property(e => e.ShipID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-
 
             modelBuilder.Entity<Order>()
                 .ToTable("Order")
@@ -98,7 +125,7 @@ namespace PackageTracking.Data
                         break;
                 }
             }
-                return base.SaveChanges();
-            }
+            return base.SaveChanges();
         }
     }
+}

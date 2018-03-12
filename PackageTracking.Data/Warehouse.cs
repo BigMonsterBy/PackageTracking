@@ -10,7 +10,7 @@ namespace PackageTracking.Data
     {
         public Warehouse()
         {
-            UserRole = new HashSet<UserRole>();
+            UserRoles = new HashSet<UserRole>();
         }
 
         [Key]
@@ -26,15 +26,11 @@ namespace PackageTracking.Data
 
         public virtual Client Client { get; set; }
 
-        public virtual ICollection<UserRole> UserRole { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
 
         [Display(Name = "Статус")]
         public bool Enabled { get; set; }
 
-        public DateTime CreatedOn { get; set; }
-        public int CreatedBy { get; set; }
-        public DateTime ModifiedOn { get; set; }
-        public int ModifiedBy { get; set; }
         [Required]
         [StringLength(100)]
         [Display(Name="Email")]
@@ -59,5 +55,19 @@ namespace PackageTracking.Data
         [StringLength(50)]
         [Display(Name="Рабочее время")]
         public string WorkingTime { get; set; }
+
+        [Display(Name = "Добавлен")]
+        public DateTime CreatedOn { get; set; }
+        public int CreatedBy { get; set; }
+
+        [Display(Name = "Изменен")]
+        public DateTime ModifiedOn { get; set; }
+        public int ModifiedBy { get; set; }
+
+        [Display(Name = "Добавил")]
+        public virtual User Creator { get; set; }
+
+        [Display(Name = "Изменил")]
+        public virtual User Modifier { get; set; }
     }
 }

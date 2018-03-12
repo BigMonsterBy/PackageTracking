@@ -20,13 +20,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 -->
-                @Html.ActionLink("Package Tracking", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Отгрузки", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Клиенты", "Index", "Clients")</li>
-                    <li>@Html.ActionLink("Отгрузки", "Index", "Income")</li>
-                    <li>@Html.ActionLink("Админы", "Index", "Users")</li>
+                    @*<li>@Html.ActionLink("Отгрузки", "Index", "Income")</li>*@
+                    @*<li>@Html.ActionLink("Админы", "Index", "Users")</li>*@
                 </ul>
             </div>
         </div>
@@ -38,5 +38,12 @@
     </div>
 
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $("document").validate({
+                lang: 'ru'  // or whatever language option you have.
+            });
+        });
+    </script>
 </body>
 </html>

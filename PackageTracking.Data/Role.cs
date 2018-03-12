@@ -17,6 +17,7 @@ namespace PackageTracking.Data
 
         [Required]
         [StringLength(250)]
+        [Display(Name = "Должность")]
         public string Name { get; set; }
 
         public int Access { get; set; }

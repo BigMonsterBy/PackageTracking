@@ -18,9 +18,8 @@ namespace PackageTracking.Web.Controllers
             {
                 return RedirectToAction("Logon");
             }
-            ViewBag.Title = "Home Page";
 
-            return View();
+            return RedirectToAction(actionName: "Index", controllerName: "Income");
         }
 
         [HttpGet]

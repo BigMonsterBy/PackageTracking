@@ -31,10 +31,21 @@ namespace PackageTracking.Data
         [Display(Name = "Активен")]
         public bool Enabled { get; set; }
 
+        [Display(Name = "Добавлен")]
         public DateTime CreatedOn { get; set; }
         public int CreatedBy { get; set; }
+
+        [Display(Name = "Изменен")]
         public DateTime ModifiedOn { get; set; }
         public int ModifiedBy { get; set; }
 
+        [Display(Name = "Примечания")]
+        public string Note { get; set; }
+
+        [Display(Name = "Добавил")]
+        public virtual User Creator { get; set; }
+
+        [Display(Name = "Изменил")]
+        public virtual User Modifier { get; set; }
     }
 }

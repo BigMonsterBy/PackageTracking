@@ -18,13 +18,6 @@ namespace PackageTracking.Web.Controllers
         {
         }
 
-        // GET: Users
-        public ActionResult Index()
-        {
-            return View(_packageTrackingContext.User.ToList());
-        }
-
-        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +32,6 @@ namespace PackageTracking.Web.Controllers
             return View(user);
         }
 
-        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
